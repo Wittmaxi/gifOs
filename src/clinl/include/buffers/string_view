@@ -1,0 +1,22 @@
+#pragma once
+#include "buffers/buffer.hpp"
+#include "libk/string.h"
+
+namespace ksdk
+{
+using string_view = buffer<char>;
+
+inline bool operator==(string_view rhs, string_view lhs)
+{
+    if (rhs.size() != lhs.size())
+    {
+        return false;
+    }
+    return memcmp(rhs.begin(), lhs.begin(), rhs.size()) == 0;
+}
+inline bool operator!=(string_view rhs, string_view lhs)
+{
+    return !(rhs == lhs);
+}
+
+} // namespace ksdk
